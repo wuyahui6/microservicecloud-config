@@ -3,8 +3,9 @@ spring:
     active: 
       -dev
 ---
-spring:
+server:
   port: 8201
+spring:
   profiles: dev
   application:
     name: microservicecloud-config-client
@@ -14,8 +15,9 @@ eureka:
       defaultZone: http://eureka-dev.com:7001/eureka/
 
 ---
+server:
+  port: 8202  
 spring:
-  port: 8202
   profiles: test
   application:
     name: microservicecloud-config-ebon-test  
