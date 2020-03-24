@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: 
+      -dev
+---
+spring:
+  service: 8201
+  profiles: dev
+  application:
+    name: microservicecloud-config-client
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-dev.com:7001/eureka/
+
+---
+spring:
+  service: 8202
+  profiles: test
+  application:
+    name: microservicecloud-config-ebon-test  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-test.com:7001/eureka/    
+    
