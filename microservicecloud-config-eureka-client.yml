@@ -1,160 +1,55 @@
 spring:
- profiles: dev
-  application:
-    name: microservicecloud-config-dept-client
-  datasource:
-    username: root
-    password: 123456
-    url: jdbc:mysql://192.168.1.139:3306/cloudDB01?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
-    driver-class-name: com.mysql.cj.jdbc.Driver    # mysql\u9A71\u52A8\u5305
-    type: com.alibaba.druid.pool.DruidDataSource   # \u5F53\u524D\u6570\u636E\u6E90\u64CD\u4F5C\u7C7B\u578B
-    #    schema:
-    #      - classpath:sql/department.sql
-    #      - classpath:sql/employee.sql
-    #    initialization-mode: always
-    initialSize: 5
-    minIdle: 5
-    maxActive: 20
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: SELECT 1 FROM DUAL
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    #   \u914D\u7F6E\u76D1\u63A7\u7EDF\u8BA1\u62E6\u622A\u7684filters\uFF0C\u53BB\u6389\u540E\u76D1\u63A7\u754C\u9762sql\u65E0\u6CD5\u7EDF\u8BA1\uFF0C'wall'\u7528\u4E8E\u9632\u706B\u5899
-    filters: stat,wall,log4j,sql
-    maxPoolPreparedStatementPerConnectionSize: 20
-    useGlobalDataSourceStat: true
-    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-mybatis:
-  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis\u914D\u7F6E\u6587\u4EF6\u6240\u5728\u8DEF\u5F84
-  type-aliases-package: com.ebon.springcloud.entities    # \u6240\u6709Entity\u522B\u540D\u7C7B\u6240\u5728\u5305
-  mapper-locations:
-    - classpath:mybatis/mapper/**/*.xml                       # mapper\u6620\u5C04\u6587\u4EF6
-
+  profiles: dev
+  application: 
+    name: microservicecloud-confing-eureka-client
 
 eureka:
   instance:
-    prefer-ip-address: true # 注册服务的时候使用服务的ip地址
-    instance-id: microservicecloud-dept8001-dev
+    hostname: eureka7001.com #eureka\u670D\u52A1\u7AEF\u7684\u5B9E\u4F8B\u540D\u79F0
   client:
+    register-with-eureka: false  #\u4E0D\u5411\u6CE8\u518C\u4E2D\u5FC3\u6CE8\u518C\u81EA\u5DF1
+    fetch-registry: false        #false\u8868\u793A\u81EA\u5DF1\u7AEF\u5C31\u662F\u6CE8\u518C\u4E2D\u5FC3\uFF0C\u6211\u7684\u804C\u8D23\u5C31\u662F\u7EF4\u62A4\u670D\u52A1\u5B9E\u4F8B\uFF0C\u5E76\u4E0D\u9700\u8981\u53BB\u68C0\u7D22\u670D\u52A1
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/
-
-
-info:
-  app.name: ebon-microservicecloud
-  company.name: www.ebon.com
-  build.artifactId: @project.artifactId@
-  build.version: @project.version@
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/        #\u8BBE\u7F6E\u4E0EEureka Server\u4EA4\u4E92\u7684\u5730\u5740\u67E5\u8BE2\u670D\u52A1\u548C\u6CE8\u518C\u670D\u52A1\u90FD\u9700\u8981\u4F9D\u8D56\u8FD9\u4E2A\u5730\u5740\u3002
+       defaultZone: http://eureka7001.com:7001/eureka/
 ---
 server:
-  port: 8001
+  port: 7001
+
 spring:
   profiles: dev
   application:
-    name: microservicecloud-config-dept-client
-  datasource:
-    username: root
-    password: 123456
-    url: jdbc:mysql://192.168.1.139:3306/cloudDB01?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
-    driver-class-name: com.mysql.cj.jdbc.Driver    # mysql\u9A71\u52A8\u5305
-    type: com.alibaba.druid.pool.DruidDataSource   # \u5F53\u524D\u6570\u636E\u6E90\u64CD\u4F5C\u7C7B\u578B
-    #    schema:
-    #      - classpath:sql/department.sql
-    #      - classpath:sql/employee.sql
-    #    initialization-mode: always
-    initialSize: 5
-    minIdle: 5
-    maxActive: 20
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: SELECT 1 FROM DUAL
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    #   \u914D\u7F6E\u76D1\u63A7\u7EDF\u8BA1\u62E6\u622A\u7684filters\uFF0C\u53BB\u6389\u540E\u76D1\u63A7\u754C\u9762sql\u65E0\u6CD5\u7EDF\u8BA1\uFF0C'wall'\u7528\u4E8E\u9632\u706B\u5899
-    filters: stat,wall,log4j,sql
-    maxPoolPreparedStatementPerConnectionSize: 20
-    useGlobalDataSourceStat: true
-    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-mybatis:
-  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis\u914D\u7F6E\u6587\u4EF6\u6240\u5728\u8DEF\u5F84
-  type-aliases-package: com.ebon.springcloud.entities    # \u6240\u6709Entity\u522B\u540D\u7C7B\u6240\u5728\u5305
-  mapper-locations:
-    - classpath:mybatis/mapper/**/*.xml                       # mapper\u6620\u5C04\u6587\u4EF6
-
+    name: microservicecloud-confing-eureka-client
 
 eureka:
   instance:
-    prefer-ip-address: true # 注册服务的时候使用服务的ip地址
-    instance-id: microservicecloud-dept8001-dev
+    hostname: eureka7001.com #eureka\u670D\u52A1\u7AEF\u7684\u5B9E\u4F8B\u540D\u79F0
   client:
+    register-with-eureka: false  #\u4E0D\u5411\u6CE8\u518C\u4E2D\u5FC3\u6CE8\u518C\u81EA\u5DF1
+    fetch-registry: false        #false\u8868\u793A\u81EA\u5DF1\u7AEF\u5C31\u662F\u6CE8\u518C\u4E2D\u5FC3\uFF0C\u6211\u7684\u804C\u8D23\u5C31\u662F\u7EF4\u62A4\u670D\u52A1\u5B9E\u4F8B\uFF0C\u5E76\u4E0D\u9700\u8981\u53BB\u68C0\u7D22\u670D\u52A1
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/
-
-
-info:
-  app.name: ebon-microservicecloud
-  company.name: www.ebon.com
-  build.artifactId: @project.artifactId@
-  build.version: @project.version@
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/        #\u8BBE\u7F6E\u4E0EEureka Server\u4EA4\u4E92\u7684\u5730\u5740\u67E5\u8BE2\u670D\u52A1\u548C\u6CE8\u518C\u670D\u52A1\u90FD\u9700\u8981\u4F9D\u8D56\u8FD9\u4E2A\u5730\u5740\u3002
+       defaultZone: http://eureka7001.com:7001/eureka/
+  
 ---
 server:
-  port: 8002
+  port: 7002
+
 spring:
   profiles: test
   application:
-    name: microservicecloud-config-dept-client
-  datasource:
-    username: root
-    password: 123456
-    url: jdbc:mysql://192.168.1.139:3306/cloudDB02?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
-    driver-class-name: com.mysql.cj.jdbc.Driver    # mysql\u9A71\u52A8\u5305
-    type: com.alibaba.druid.pool.DruidDataSource   # \u5F53\u524D\u6570\u636E\u6E90\u64CD\u4F5C\u7C7B\u578B
-    #    schema:
-    #      - classpath:sql/department.sql
-    #      - classpath:sql/employee.sql
-    #    initialization-mode: always
-    initialSize: 5
-    minIdle: 5
-    maxActive: 20
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: SELECT 1 FROM DUAL
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    #   \u914D\u7F6E\u76D1\u63A7\u7EDF\u8BA1\u62E6\u622A\u7684filters\uFF0C\u53BB\u6389\u540E\u76D1\u63A7\u754C\u9762sql\u65E0\u6CD5\u7EDF\u8BA1\uFF0C'wall'\u7528\u4E8E\u9632\u706B\u5899
-    filters: stat,wall,log4j,sql
-    maxPoolPreparedStatementPerConnectionSize: 20
-    useGlobalDataSourceStat: true
-    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-mybatis:
-  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis\u914D\u7F6E\u6587\u4EF6\u6240\u5728\u8DEF\u5F84
-  type-aliases-package: com.ebon.springcloud.entities    # \u6240\u6709Entity\u522B\u540D\u7C7B\u6240\u5728\u5305
-  mapper-locations:
-    - classpath:mybatis/mapper/**/*.xml                       # mapper\u6620\u5C04\u6587\u4EF6
-
+    name: microservicecloud-confing-eureka-client
 
 eureka:
   instance:
-    prefer-ip-address: true # 注册服务的时候使用服务的ip地址
-    instance-id: microservicecloud-dept8001-test
+    hostname: eureka7001.com #eureka\u670D\u52A1\u7AEF\u7684\u5B9E\u4F8B\u540D\u79F0
   client:
+    register-with-eureka: false  #\u4E0D\u5411\u6CE8\u518C\u4E2D\u5FC3\u6CE8\u518C\u81EA\u5DF1
+    fetch-registry: false        #false\u8868\u793A\u81EA\u5DF1\u7AEF\u5C31\u662F\u6CE8\u518C\u4E2D\u5FC3\uFF0C\u6211\u7684\u804C\u8D23\u5C31\u662F\u7EF4\u62A4\u670D\u52A1\u5B9E\u4F8B\uFF0C\u5E76\u4E0D\u9700\u8981\u53BB\u68C0\u7D22\u670D\u52A1
     service-url:
-      defaultZone: http://eureka7002.com:7002/eureka/
-
-
-info:
-  app.name: ebon-microservicecloud
-  company.name: www.ebon.com
-  build.artifactId: @project.artifactId@
-  build.version: @project.version@  
-
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/        #\u8BBE\u7F6E\u4E0EEureka Server\u4EA4\u4E92\u7684\u5730\u5740\u67E5\u8BE2\u670D\u52A1\u548C\u6CE8\u518C\u670D\u52A1\u90FD\u9700\u8981\u4F9D\u8D56\u8FD9\u4E2A\u5730\u5740\u3002
+       defaultZone: http://eureka7002.com:7002/eureka/
+  
+    
+  
+       
