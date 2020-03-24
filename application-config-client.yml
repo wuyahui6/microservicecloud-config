@@ -4,7 +4,7 @@ spring:
       -dev
 ---
 spring:
-  service: 8201
+  port: 8201
   profiles: dev
   application:
     name: microservicecloud-config-client
@@ -15,7 +15,7 @@ eureka:
 
 ---
 spring:
-  service: 8202
+  port: 8202
   profiles: test
   application:
     name: microservicecloud-config-ebon-test  
