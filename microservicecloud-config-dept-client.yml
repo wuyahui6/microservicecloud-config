@@ -2,6 +2,7 @@ spring:
   profiles:
     active:
     - dev
+
 ---
 server:
   port: 8001
@@ -58,7 +59,7 @@ info:
   build.version: @project.version@
 ---
 server:
-  port: 8001
+  port: 8002
 spring:
   profiles: test
   application:
@@ -66,7 +67,7 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://192.168.1.139:3306/cloudDB01?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://192.168.1.139:3306/cloudDB02?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver    # mysql\u9A71\u52A8\u5305
     type: com.alibaba.druid.pool.DruidDataSource   # \u5F53\u524D\u6570\u636E\u6E90\u64CD\u4F5C\u7C7B\u578B
     #    schema:
@@ -102,7 +103,7 @@ eureka:
     instance-id: microservicecloud-dept8001-test
   client:
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/
+      defaultZone: http://eureka7002.com:7002/eureka/
 
 
 info:
