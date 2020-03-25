@@ -55,7 +55,7 @@ info:
   app.name: ebon-microservicecloud
   company.name: www.ebon.com
   build.artifactId: '@project.artifactId@'
-  build.version: '@project.version''
+  build.version: '@project.version'
 ---
 server:
   port: 8002
