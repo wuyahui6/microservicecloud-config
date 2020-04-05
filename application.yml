@@ -1,15 +1,3 @@
-spring:
-  profiles:
-    active: 
-      -dev
----
-spring:
-  profiles: dev
-  application:
-    name: microservicecloud-config-ebon-dev
----
-spring:
-  profiles: test
-  application:
-    name: microservicecloud-config-ebon-test    
-    
+
+config:
+  info: my config version=1
